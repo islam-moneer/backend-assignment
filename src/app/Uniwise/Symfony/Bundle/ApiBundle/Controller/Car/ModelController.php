@@ -14,31 +14,15 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Uniwise\Symfony\Bundle\ApiBundle\ApiBundle;
 
 /**
- * @Route("/cars")
+ * @Route("/models")
  */
-class CarController extends FOSRestController {
+class ModelController extends FOSRestController {
 
     /**
      * @Get("/")
      */
-    public function getCars()
+    public function getModels()
     {
-        return $this->getDoctrine()->getRepository(Car::class)->findAll();
-    }
-
-    /**
-     * @Get("/{model}/model")
-     */
-    public function getCarsByModel(Model $model)
-    {
-        return $this->getDoctrine()->getRepository(Car::class)->getCarsByModel($model);
-    }
-
-    /**
-     * @Get("/{brand}/brand")
-     */
-    public function getCarsByBrand(Brand $brand)
-    {
-        return $this->getDoctrine()->getRepository(Car::class)->getCarsByBrand($brand);
+        return $this->getDoctrine()->getRepository(Model::class)->findAll();
     }
 }

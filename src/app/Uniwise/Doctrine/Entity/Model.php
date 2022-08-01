@@ -3,12 +3,13 @@ namespace Uniwise\Doctrine\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
- * @ORM\Entity(repositoryClass="CarRepository")
- * @ORM\Table(name="car")
+ * @ORM\Entity(repositoryClass="ModelRepository")
+ * @ORM\Table(name="model")
  */
-class Car {
+class Model {
 
     /**
      * @ORM\Id
@@ -24,18 +25,6 @@ class Car {
     private $name;
 
     /**
-     * @ManyToOne(targetEntity="Brand")
-     * @var Brand
-     */
-    private $brand;
-
-    /**
-     * @ManyToOne(targetEntity="Model")
-     * @var Model
-     */
-    private $model;
-
-    /**
      * Get id.
      *
      * @return int
@@ -46,11 +35,17 @@ class Car {
     }
 
     /**
+     * @ManyToOne(targetEntity="Brand")
+     * @var Brand
+     */
+    private $brand;
+
+    /**
      * Set name.
      *
      * @param string $name
      *
-     * @return Car
+     * @return Model
      */
     public function setName($name)
     {
@@ -74,7 +69,7 @@ class Car {
      *
      * @param \Uniwise\Doctrine\Entity\Brand|null $brand
      *
-     * @return Car
+     * @return Model
      */
     public function setBrand(\Uniwise\Doctrine\Entity\Brand $brand = null)
     {
@@ -92,28 +87,47 @@ class Car {
     {
         return $this->brand;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cars = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Set model.
+     * Add car.
      *
-     * @param \Uniwise\Doctrine\Entity\Model|null $model
+     * @param \Uniwise\Doctrine\Entity\Car $car
      *
-     * @return Car
+     * @return Model
      */
-    public function setModel(\Uniwise\Doctrine\Entity\Model $model = null)
+    public function addCar(\Uniwise\Doctrine\Entity\Car $car)
     {
-        $this->model = $model;
+        $this->cars[] = $car;
 
         return $this;
     }
 
     /**
-     * Get model.
+     * Remove car.
      *
-     * @return \Uniwise\Doctrine\Entity\Model|null
+     * @param \Uniwise\Doctrine\Entity\Car $car
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function getModel()
+    public function removeCar(\Uniwise\Doctrine\Entity\Car $car)
     {
-        return $this->model;
+        return $this->cars->removeElement($car);
+    }
+
+    /**
+     * Get cars.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCars()
+    {
+        return $this->cars;
     }
 }

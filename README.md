@@ -1,27 +1,3 @@
-# Assignment
-
-The assignment is intended to assist us in assessing your abilities to design solid architectures and write the code to support these.
-The assignment should open up for discssuions in varous topics like testing, scalability, performance, maintainability, extendability etc..
-
-
-The aim of the assigment is to make some REST endpoints to work with cars.
-The cars have a brand, model, color, gas economy and a list of extra accessories.
-
-There should be an endpoint to list all cars from the database
-There should be an endpoint to filter the view of the cars and sort them. 
-It should be possible to filter and sort on various things like equipment
-
-The endpoint should return JSON. It's not the aim of the assignment to make any UI
-
-
-There's a mysql database in the docker instance that is reachable on localhost:3306 with user: wiseflow and password: test.
-
-The intention is to use doctrine to describe entities in the database.
-
-However, the important focus is not necessarily on the frameworks, but on. For the record two of the PHP frameworks we currently use are: Doctrine og Symfony. 
-
-
-
 # Setup (this is not required for the interview/test)
 
 When entities are create the following command can be run to create/update tables in database:
@@ -91,7 +67,17 @@ sudo apt-get install -y make
 ```
 
 ### Setup
-1. Get the project from git (git clone https://github.com/UNIwise/backend-assignment.git) or download the zip file
-2. Navigate into the src foler and run: make build
-3. Open [http://localhost/car](http://localhost/car) this is where the assignment starts. Enjoy :)
+1- After set up the project  Open [http://localhost](http://localhost) to fill the database with the required data.
+
+2- Open [http://localhost/cars](http://localhost/cars) to list all cars.
+
+3- Open [http://localhost/models](http://localhost/models) to list all models.
+
+4- Open [http://localhost/brands](http://localhost/brands) to list all brands.
+
+5- To filter cars with brands open [http://localhost/cars/{brand_id}/brand](http://localhost/cars/{brand_id}/brand) 
+to list all cars exists in this brand.
+
+6- To filter cars with models open [http://localhost/cars/{model_id}/brand](http://localhost/cars/{model_id}/brand) 
+to list all cars exists in this model.
   
